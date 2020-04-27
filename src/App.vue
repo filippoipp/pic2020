@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <p>PIC 2020</p>
+    <Login></Login>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'App',
+  components: {
+    Login: () => import('./components/Login/Login.vue'),
+  }
 }
 </script>
 
