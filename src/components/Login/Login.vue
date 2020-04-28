@@ -4,7 +4,9 @@
         <form class="login-form">
             <input type="text" placeholder="usuário"/>
             <input type="password" placeholder="senha"/>
-            <button>login</button>
+            <router-link to="/dashboard">
+                <button>login</button>
+            </router-link>
             <p class="message">Não é registrado? <a href="#">Crie uma conta</a></p>
         </form>
     </div>

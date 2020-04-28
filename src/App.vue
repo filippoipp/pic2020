@@ -9,7 +9,7 @@
 export default {
   name: 'App',
   components: {
-    Login: () => import('./components/Login/Login.vue'),
+    Login: () => import('@/components/Login/Login.vue'),
   }
 }
 </script>
