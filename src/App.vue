@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dashboard></dashboard>
+    <Login></Login>
   </div>
 </template>
 
@@ -9,8 +9,8 @@
 export default {
   name: 'App',
   components: {
-    //Login: () => import('@/components/Login/Login.vue'),
-    Dashboard: () => import('@/components/Dashboard/Dashboard.vue'),
+    Login: () => import('@/components/Login/Login.vue'),
+    //Dashboard: () => import('@/components/Dashboard/Dashboard.vue'),
   }
 }
 </script>
