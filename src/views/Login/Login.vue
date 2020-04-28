@@ -4,9 +4,7 @@
         <form class="login-form">
             <input type="text" placeholder="usuário"/>
             <input type="password" placeholder="senha"/>
-            <router-link to="/dashboard">
-                <button>login</button>
-            </router-link>
+            <router-link class="btn" to="/dashboard">Login</router-link>
             <p class="message">Não é registrado? <a href="#">Crie uma conta</a></p>
         </form>
     </div>
@@ -16,7 +14,8 @@
 <script>
 export default {
   name: 'login',
-}
+};
+
 </script>
 <style lang="scss">
     @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -47,14 +46,14 @@ export default {
     box-sizing: border-box;
     font-size: 14px;
     }
-    .form button {
+    .form .btn {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background: #4CAF50;
-    width: 100%;
     border: 0;
-    padding: 15px;
+    text-decoration: none;
+    padding: 10px 115px;
     color: #FFFFFF;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
@@ -117,6 +116,6 @@ export default {
     background: linear-gradient(to left, #76b852, #8DC26F);
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;      
+    -moz-osx-font-smoothing: grayscale;
     }
 </style>

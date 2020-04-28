@@ -1,7 +1,6 @@
 <template>
   <section id="sideMenu">
     <nav>
-      <img src="../../assets/unnamed.png" alt="">
       <a href="#" class="active"><i class="fa fa-home" aria-hidden="true"></i>Página inicial</a>
       <a href="#"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Todos os serviços</a>
       <a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Serviços por ID</a>
@@ -16,12 +15,7 @@ export default {
   data: () => ({
     pag: 1,
   }),
-  methods: {
-    handleAll() {
-
-    }
-  }
-}
+};
 </script>
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Roboto');

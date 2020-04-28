@@ -1,19 +1,11 @@
 <template>
   <div id="app">
-    <Login></Login>
+    <div id="nav">
+    </div>
+    <router-view/>
   </div>
 </template>
 
-<script>
+<style lang="scss">
 
-export default {
-  name: 'App',
-  components: {
-    Login: () => import('@/components/Login/Login.vue'),
-    //Dashboard: () => import('@/components/Dashboard/Dashboard.vue'),
-  }
-}
-</script>
-
-<style>
 </style>

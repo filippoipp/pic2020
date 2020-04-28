@@ -1,22 +1,25 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-const router = new Router({
+const routes = [
+  {
+    path: '/',
+    name: 'Login',
+    component: () => import('../views/Login/Login.vue'),
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: () => import('../views/Dashboard/Dashboard.vue'),
+  },
+];
+
+const router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'dashboard',
-      component: () => import('@/components/Dashboard/Dashboard.vue'),
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('@/components/Dashboard/Dashboard.vue'),
-    },
-  ],
+  base: process.env.BASE_URL,
+  routes,
 });
 
 export default router;
