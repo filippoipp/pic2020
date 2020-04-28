@@ -1,10 +1,10 @@
 <template>
   <section id="sideMenu">
     <nav>
-      <a href="#" class="active"><i class="fa fa-home" aria-hidden="true"></i>Página inicial</a>
-      <a href="#"><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Todos os serviços</a>
-      <a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Serviços por ID</a>
-      <a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i> Sair</a>
+      <a class="active"><i class="fa fa-home" aria-hidden="true"></i>Página inicial</a>
+      <a><i class="fa fa-sticky-note-o" aria-hidden="true"></i> Todos os serviços</a>
+      <a><i class="fa fa-bookmark-o" aria-hidden="true"></i> Serviços por ID</a>
+      <a><i class="fa fa-bookmark-o" aria-hidden="true"></i> Sair</a>
     </nav>
   </section>
 </template>
