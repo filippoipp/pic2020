@@ -2,7 +2,11 @@
 <body>
   <section id="sideMenu">
     <nav>
-      <img src="https://images.vexels.com/media/users/3/193114/isolated/preview/0be3590284a8dc5f1646b64816e2eb6e-distintivo-de-parada-covarde-by-vexels.png" alt="">
+      <img
+        src="https://images.vexels.com/media/users/3/193114/isolated/preview/0be3590284a8dc5f1646b64816e2eb6e-distintivo-de-parada-covarde-by-vexels.png"
+        alt
+      />
+      <p>API Status: {{ !!status_api ? status_api : ''}}</p>
       <a :class="display == 'init' ? 'active' : ''" @click="display = 'init'">
         <i class="fa fa-home" aria-hidden="true"></i>Página inicial
       </a>
@@ -12,7 +16,7 @@
       <a>
         <i class="fa fa-bookmark-o" aria-hidden="true"></i> Dados no Brasl em data específica
       </a>
-      <a>
+      <a :class="display == 'country' ? 'active' : ''" @click="display = 'country'">
         <i class="fa fa-bookmark-o" aria-hidden="true"></i> Dados por País
       </a>
       <router-link to="/">
@@ -29,6 +33,62 @@
         <li>Dados no Brasil em data especifica</li>
         <li>Dados por País</li>
       </ul>
+      <div class="state-cases">
+        <div class="most-cases">
+          <ul class="list">
+            <li>
+              <span class="material-icons">arrow_upward</span>
+            </li>
+            <li>
+              <h1>Estado com maior número de casos:</h1>
+            </li>
+          </ul>
+          <span>Estado: {{!!sp ? sp.state : ''}}</span>
+          <span>Casos: {{!!sp ? sp.cases : ''}}</span>
+          <span>Mortes: {{!!sp ? sp.deaths : ''}}</span>
+        </div>
+        <div class="less-cases">
+          <ul class="list">
+            <li>
+              <span class="material-icons">arrow_downward</span>
+            </li>
+            <li>
+              <h1>Estado com menor número de casos:</h1>
+            </li>
+          </ul>
+          <span>Estado: {{!!ms ? ms.state : ''}}</span>
+          <span>Casos: {{!!ms ? ms.cases : ''}}</span>
+          <span>Mortes: {{!!ms ? ms.deaths : ''}}</span>
+        </div>
+      </div>
+      <div class="state-cases">
+        <div class="most-cases">
+          <ul class="list">
+            <li>
+              <span class="material-icons">arrow_upward</span>
+            </li>
+            <li>
+              <h1>País com maior número de casos (casos por milhão):</h1>
+            </li>
+          </ul>
+          <span>País: {{!!us ? us.country : ''}}</span>
+          <span>Casos: {{!!us ? us.cases : ''}}</span>
+          <span>Mortes: {{!!us ? us.deaths : ''}}</span>
+        </div>
+        <div class="less-cases">
+          <ul class="list">
+            <li>
+              <span class="material-icons">arrow_downward</span>
+            </li>
+            <li>
+              <h1>País com menor número de casos (casos por milhão):</h1>
+            </li>
+          </ul>
+          <span>País: {{!!zimbabue ? zimbabue.country : ''}}</span>
+          <span>Casos: {{!!zimbabue ? zimbabue.cases : ''}}</span>
+          <span>Mortes: {{!!zimbabue ? zimbabue.deaths : ''}}</span>
+        </div>
+      </div>
       <p>Grupo: Filippo, Conrado, Edson e Gabriel</p>
     </div>
     <div v-if="display == 'state'" class="state-page">
@@ -69,7 +129,30 @@
         <p>{{!!estado ? estado.state : ''}}</p>
         <span>Casos: {{!!estado ? estado.cases : ''}}</span>
         <span :style="{color: 'red'}">Mortes: {{!!estado ? estado.deaths : ''}}</span>
-        <small>Data referente aos dados: {{!!estado ? estado.datetime : ''}}</small>
+        <small>Data referente aos dia: {{!!estado ? formatDate(estado.datetime) : ''}}</small>
+      </div>
+    </div>
+    <div v-if="display == 'country'" class="state-page">
+      <div class="filter">
+        <p>Selecione um país</p>
+        <select name="states" id v-model="country">
+          <option value="brazil">Brasil</option>
+          <option value="argentina">Argentina</option>
+          <option value="canada">Canada</option>
+          <option value="germany">Alemanha</option>
+          <option value="maldives">Maldivas</option>
+          <option value="cambodia">Camboja</option>
+          <option value="ethiopia">Etiopia</option>
+          <option value="spain">Espanha</option>
+          <option value="us">Estados Unidos</option>
+        </select>
+        <button @click="handleCountry()">Pesquisar</button>
+      </div>
+      <div class="data">
+        <p>{{!!pais ? pais.country : ''}}</p>
+        <span>Casos: {{!!pais ? pais.cases : ''}}</span>
+        <span :style="{color: 'red'}">Mortes: {{!!pais ? pais.deaths : ''}}</span>
+        <small>Data referente aos dia: {{!!pais ? formatDate(pais.updated_at) : ''}}</small>
       </div>
     </div>
   </section>
@@ -78,27 +161,82 @@
 
 <script>
 import axios from "axios";
+import { parseISO, format } from "date-fns";
 
 export default {
   name: "dashboard",
   data: () => ({
     display: "init",
     state: "mg",
+    country: "brazil",
     estado: null,
+    pais: null,
+    status_api: null,
+
+    us: null,
+    zimbabue: null,
+
+    sp: null,
+    ms: null
   }),
 
   created() {
+    this.handleStatus();
+    this.handleUs();
+    this.handleZimbabue();
+    this.handleSp();
+    this.handleMs();
     this.handleState();
+    this.handleCountry();
   },
 
   methods: {
+    async handleStatus() {
+      const response = await axios.get(
+        "https://covid19-brazil-api.now.sh/api/status/v1"
+      );
+      this.status_api = response.data.status;
+    },
+    async handleUs() {
+      const response = await axios.get(
+        "https://covid19-brazil-api.now.sh/api/report/v1/us"
+      );
+      this.us = response.data.data;
+    },
+    async handleZimbabue() {
+      const response = await axios.get(
+        "https://covid19-brazil-api.now.sh/api/report/v1/zimbabwe"
+      );
+      this.zimbabue = response.data.data;
+    },
+    async handleSp() {
+      const response = await axios.get(
+        'https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/sp'
+      );
+      this.sp = response.data;
+    },
+    async handleMs() {
+      const response = await axios.get(
+        'https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/ms'
+      );
+      this.ms = response.data;
+    },
     async handleState() {
-      this.display = "state";
       const response = await axios.get(
         `https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${this.state}`
       );
-      console.log(response.data)
       this.estado = response.data;
+    },
+    async handleCountry() {
+      const response = await axios.get(
+        `https://covid19-brazil-api.now.sh/api/report/v1/${this.country}`
+      );
+      this.pais = response.data.data;
+    },
+    formatDate(date) {
+      const aux = parseISO(date);
+      const newDate = format(aux, " dd 'de' MMMM' , às ' HH:mm'h'");
+      return newDate;
     }
   }
 };
@@ -134,6 +272,10 @@ body {
 nav {
   display: flex;
   flex-direction: column;
+  p {
+    color: white;
+    text-align: center;
+  }
   img {
     width: 100px;
     height: 100px;
@@ -173,6 +315,29 @@ nav {
   margin-left: 250px;
 
   .initial-page {
+    .list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    h1 {
+      text-align: left !important;
+    }
+    span {
+      margin-bottom: 10px;
+    }
+    .state-cases {
+      display: flex;
+      justify-content: space-around;
+    }
+    .most-cases {
+      display: flex;
+      flex-direction: column;
+    }
+    .less-cases {
+      display: flex;
+      flex-direction: column;
+    }
     h1 {
       font-weight: bold;
       font-size: 20px;
