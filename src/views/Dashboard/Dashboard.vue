@@ -142,7 +142,7 @@
           <option value="germany">Alemanha</option>
           <option value="maldives">Maldivas</option>
           <option value="cambodia">Camboja</option>
-          <option value="ethiopia">Etiopia</option>
+          <option value="ethiopia">Etiópia</option>
           <option value="spain">Espanha</option>
           <option value="us">Estados Unidos</option>
         </select>
