@@ -1,0 +1,19 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "email": "filippoipp@hotmail.com",
+            "password": "010293"
+        },
+        {
+            "id": 2,
+            "email": "admin@hotmail.com",
+            "password": "admin"
+        },
+        {
+            "id": 3,
+            "email": "conrado@hotmail.com",
+            "password": "123456"
+        }
+    ]
+}
