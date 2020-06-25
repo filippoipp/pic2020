@@ -27,7 +27,7 @@
   <section id="content">
     <div v-if="display == 'init'" class="initial-page">
       <h1>Consulta a API COVID19 Brasil.</h1>
-      <h2>Devido a dificuldade de encontrar uma API que funcionasse ou que estivesse com CORS liberado e ao atual momento que enfrentamos, resolvemos consultar uma bse de dados que nos mostra a quantidade de casos suspeitos e mortes devido ao novo Corona vírus.</h2>
+      <h2>Devido a dificuldade de encontrar uma API que funcionasse ou que estivesse com CORS liberado e ao atual momento que enfrentamos, resolvemos consultar uma base de dados que nos mostra a quantidade de casos suspeitos e mortes devido ao novo Corona vírus.</h2>
       <ul>
         <li>Dados por estado</li>
         <li>Dados no Brasil em data especifica</li>
