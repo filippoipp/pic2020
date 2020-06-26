@@ -72,7 +72,7 @@
             </li>
           </ul>
           <span>País: {{!!us ? us.country : ''}}</span>
-          <span>Casos: {{!!us ? us.cases : ''}}</span>
+          <span>Casos: {{!!us ? us.confirmed : ''}}</span>
           <span>Mortes: {{!!us ? us.deaths : ''}}</span>
         </div>
         <div class="less-cases">
@@ -85,7 +85,7 @@
             </li>
           </ul>
           <span>País: {{!!zimbabue ? zimbabue.country : ''}}</span>
-          <span>Casos: {{!!zimbabue ? zimbabue.cases : ''}}</span>
+          <span>Casos: {{!!zimbabue ? zimbabue.confirmed : ''}}</span>
           <span>Mortes: {{!!zimbabue ? zimbabue.deaths : ''}}</span>
         </div>
       </div>
@@ -150,7 +150,7 @@
       </div>
       <div class="data">
         <p>{{!!pais ? pais.country : ''}}</p>
-        <span>Casos: {{!!pais ? pais.cases : ''}}</span>
+        <span>Casos: {{!!pais ? pais.confirmed : ''}}</span>
         <span :style="{color: 'red'}">Mortes: {{!!pais ? pais.deaths : ''}}</span>
         <small>Data referente aos dia: {{!!pais ? formatDate(pais.updated_at) : ''}}</small>
       </div>
