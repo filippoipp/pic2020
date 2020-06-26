@@ -60,7 +60,7 @@
         </div>
         <div class="card">
             <div class="card-header" style="background-color:#dc3545;">
-              País com maior número de casos:
+              País com maior número de casos (casos por milhão):
             </div>
             <div class="card-body">
               <div class="card-text">
@@ -72,7 +72,7 @@
         </div>
         <div class="card">
             <div class="card-header" style="background-color:#27a243;">
-              País com menor número de casos:
+              País com menor número de casos (casos por milhão):
             </div>
             <div class="card-body">
               <div class="card-text">
