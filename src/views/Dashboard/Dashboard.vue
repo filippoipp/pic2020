@@ -13,9 +13,6 @@
       <a :class="display == 'state' ? 'active' : ''" @click="display = 'state'">
         <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Dados por estado
       </a>
-      <a>
-        <i class="fa fa-bookmark-o" aria-hidden="true"></i> Dados no Brasil em data específica
-      </a>
       <a :class="display == 'country' ? 'active' : ''" @click="display = 'country'">
         <i class="fa fa-bookmark-o" aria-hidden="true"></i> Dados por País
       </a>
