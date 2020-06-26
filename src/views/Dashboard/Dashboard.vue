@@ -2,13 +2,16 @@
 <body>
   <section id="sideMenu">
     <nav>
-      <img
-        src="https://images.vexels.com/media/users/3/193114/isolated/preview/0be3590284a8dc5f1646b64816e2eb6e-distintivo-de-parada-covarde-by-vexels.png"
-        alt
+      <img 
+        src="/logoRadarCovid1.png"
+        alt="Logo Radar Covid"
       />
-      <p>API Status: {{ !!status_api ? status_api : ''}}</p>
+      <div class="top-menu">
+        <div><a id="mobile-button"><i class="material-icons">menu</i></a></div>
+        <div><p>API Status: {{ !!status_api ? status_api : ''}}</p></div>
+      </div>
       <a :class="display == 'init' ? 'active' : ''" @click="display = 'init'">
-        <i class="fa fa-home" aria-hidden="true"></i>Página inicial
+        <i class="fa fa-home" aria-hidden="true"></i>Página Inicial
       </a>
       <a :class="display == 'state' ? 'active' : ''" @click="display = 'state'">
         <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Dados por estado
@@ -30,63 +33,61 @@
         <li>Dados no Brasil em data especifica</li>
         <li>Dados por País</li>
       </ul>
-      <div class="state-cases">
-        <div class="most-cases">
-          <ul class="list">
-            <li>
-              <span class="material-icons">arrow_upward</span>
-            </li>
-            <li>
-              <h1>Estado com maior número de casos:</h1>
-            </li>
-          </ul>
-          <span>Estado: {{!!sp ? sp.state : ''}}</span>
-          <span>Casos: {{!!sp ? sp.cases : ''}}</span>
-          <span>Mortes: {{!!sp ? sp.deaths : ''}}</span>
+      <div class="card-group">
+        <div class="card">
+            <div class="card-header" style="background-color:#dc3545;">
+              Estado com maior número de casos:
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <p>Estado: {{!!sp ? sp.state : ''}}</p>
+                <p>Casos: {{!!sp ? sp.cases : ''}}</p>
+                <p>Mortes: {{!!sp ? sp.deaths : ''}}</p>
+              </div>
+            </div>
         </div>
-        <div class="less-cases">
-          <ul class="list">
-            <li>
-              <span class="material-icons">arrow_downward</span>
-            </li>
-            <li>
-              <h1>Estado com menor número de casos:</h1>
-            </li>
-          </ul>
-          <span>Estado: {{!!ms ? ms.state : ''}}</span>
-          <span>Casos: {{!!ms ? ms.cases : ''}}</span>
-          <span>Mortes: {{!!ms ? ms.deaths : ''}}</span>
+        <div class="card">
+            <div class="card-header" style="background-color:#27a243;">
+              Estado com menor número de casos:
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <p>Estado: {{!!ms ? ms.state : ''}}</p>
+                <p>Casos: {{!!ms ? ms.cases : ''}}</p>
+                <p>Mortes: {{!!ms ? ms.deaths : ''}}</p>
+              </div>
+            </div>
         </div>
+        <div class="card">
+            <div class="card-header" style="background-color:#dc3545;">
+              País com maior número de casos:
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <p>País: {{!!belgium ? belgium.country : ''}}</p>
+                <p>Casos: {{!!belgium ? belgium.confirmed : ''}}</p>
+                <p>Mortes: {{!!belgium ? belgium.deaths : ''}}</p>
+              </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" style="background-color:#27a243;">
+              País com menor número de casos:
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                <p>País: {{!!zimbabue ? zimbabue.country : ''}}</p>
+                <p>Casos: {{!!zimbabue ? zimbabue.confirmed : ''}}</p>
+                <p>Mortes: Mortes: {{!!zimbabue ? zimbabue.deaths : ''}}</p>
+              </div>
+            </div>
+        </div>
+
       </div>
-      <div class="state-cases">
-        <div class="most-cases">
-          <ul class="list">
-            <li>
-              <span class="material-icons">arrow_upward</span>
-            </li>
-            <li>
-              <h1>País com maior número de casos (casos por milhão):</h1>
-            </li>
-          </ul>
-          <span>País: {{!!belgium ? belgium.country : ''}}</span>
-          <span>Casos: {{!!belgium ? belgium.confirmed : ''}}</span>
-          <span>Mortes: {{!!belgium ? belgium.deaths : ''}}</span>
-        </div>
-        <div class="less-cases">
-          <ul class="list">
-            <li>
-              <span class="material-icons">arrow_downward</span>
-            </li>
-            <li>
-              <h1>País com menor número de casos (casos por milhão):</h1>
-            </li>
-          </ul>
-          <span>País: {{!!zimbabue ? zimbabue.country : ''}}</span>
-          <span>Casos: {{!!zimbabue ? zimbabue.confirmed : ''}}</span>
-          <span>Mortes: {{!!zimbabue ? zimbabue.deaths : ''}}</span>
-        </div>
-      </div>
-      <p>Grupo: Filippo, Conrado, Edson e Gabriel</p>
+        
+
+
+      <p class="pic-group">Grupo: Filippo, Conrado, Edson e Gabriel</p>
     </div>
     <div v-if="display == 'state'" class="state-page">
       <div class="filter">
@@ -157,6 +158,7 @@
 </template>
 
 <script>
+
 import axios from "axios";
 import { parseISO, format } from "date-fns";
 
@@ -237,14 +239,15 @@ export default {
     }
   }
 };
+
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 
 $greyLight: #f2f5fa;
 $greyDark: #e7eaf4;
-$purpleLight: #2c293f;
-$purpleDark: #252234;
+$greenDark: #093129;
+$greenSelected: #216602;
 $neonGreen: #6eb81b;
 
 * {
@@ -252,23 +255,44 @@ $neonGreen: #6eb81b;
 }
 body {
   font-family: "Roboto", sans-serif;
-  background: $greyLight;
+  background-image: url(/bgRadarCovid.png);
+  background-color: rgb(242, 245, 250);
   display: flex;
   flex-direction: row;
   margin: 0px !important;
 }
+
 #sideMenu {
-  background: $purpleLight;
+  background: $greenDark;
   width: 250px;
-  max-width: 250px;
   position: fixed;
   overflow: auto;
   height: 100vh;
   transition: 1s;
+  @media (max-width: 900px){
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 50px;
+  }
 }
+
+.top-menu{
+  display:flex;
+  justify-content: space-between;
+}
+
+.top-menu > div{
+  margin-right: auto;
+}
+
 nav {
   display: flex;
   flex-direction: column;
+  @media(max-width: 900px){
+    display: block;
+  }
   p {
     color: white;
     text-align: center;
@@ -278,6 +302,14 @@ nav {
     height: 100px;
     align-self: center;
     margin: 20px 0px;
+    @media (max-width: 900px){
+      display: none;
+    }
+  }
+  #mobile-button{
+    @media(min-width: 900px){
+      display: none;
+    }
   }
   a {
     display: block;
@@ -288,11 +320,11 @@ nav {
     transition: all 1s;
     cursor: pointer;
     &.active {
-      background: $purpleDark;
+      background: $greenSelected;
       border-left: 5px solid $neonGreen;
     }
     &:hover {
-      background: $purpleDark;
+      background: $greenSelected;
       border-left: 5px solid $neonGreen;
       text-decoration: none;
       color: $greyDark;
@@ -302,14 +334,19 @@ nav {
       //display: inline-block;
       width: 30px;
     }
+    
   }
 }
 
+@media (min-width: 900px) {
+  #content {
+    margin-left: 250px;
+  }
+}
 #content {
   width: 100%;
   min-height: 100vh;
   padding: 60px;
-  margin-left: 250px;
 
   .initial-page {
     .list {
@@ -360,7 +397,65 @@ nav {
 
     p {
       text-align: center;
+    }
+
+    .pic-group{
+      position:fixed;
+      bottom:0;
+      left:50%;
       color: $neonGreen;
+    } 
+    @media (min-width: 900px) {
+      .card-group{
+        display:flex;
+        justify-content: space-between;
+      }
+    }
+
+    .card{
+      color: #000000;
+      margin-bottom: 1rem !important;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-clip: border-box;
+      border: 1px solid rgba(0,0,0,.125);
+      border-radius: .25rem;
+      box-sizing: border-box;
+    } 
+
+    .card-header{
+      border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+      padding: .75rem 1.25rem;
+      margin-bottom: 0;
+      border-bottom: 1px solid rgba(0,0,0,.125);
+      color: #ffffff;
+    }
+
+    .card-body{
+      webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      padding: 1.25rem;
+      background-color: rgb(242, 245, 250);
+    }
+
+    .card-title{
+      margin-bottom: .75rem;
+      font-size: 1.25rem;
+      margin-bottom: .5rem;
+      font-family: inherit;
+      font-weight: 500;
+      line-height: 1.2;
+      color: inherit;
+      margin-top: 0;
+    }
+
+    .card-text{
+      margin-bottom: 0;
+      margin-top: 0;
     }
   }
 
@@ -404,6 +499,6 @@ nav {
         margin-bottom: 10px;
       }
     }
-  }
+  } 
 }
 </style>

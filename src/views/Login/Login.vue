@@ -1,6 +1,13 @@
 <template>
   <div class="login-page">
     <div class="form">
+      <div>
+        <img 
+          src="/logoRadarCovid1.png"
+          alt="Logo Radar Covid"
+          class="logo-login"
+        />
+      </div>
       <form class="login-form">
         <input
           type="text"
@@ -162,6 +169,8 @@ body {
   background: -moz-linear-gradient(right, #76b852, #8dc26f);
   background: -o-linear-gradient(right, #76b852, #8dc26f);
   background: linear-gradient(to left, #76b852, #8dc26f);
+  background-image: url(/bgRadarCovid1.png);
+
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -180,5 +189,11 @@ body {
   border: none !important;
   transition: all 500ms ease-in-out;
   animation: feedback 500ms ease;
+}
+
+.logo-login{
+  width:25vh;
+  height:25vh;
+  margin-bottom:5px;
 }
 </style>
