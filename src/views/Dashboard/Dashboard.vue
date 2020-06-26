@@ -7,7 +7,7 @@
         alt="Logo Radar Covid"
       />
       <div class="top-menu">
-        <div><a id="mobile-button"><i class="material-icons">menu</i></a></div>
+        <div><a id="mobile-button" @click="handleSize()"><i class="material-icons">menu</i></a></div>
         <div><p>API Status: {{ !!status_api ? status_api : ''}}</p></div>
       </div>
       <a :class="display == 'init' ? 'active' : ''" @click="display = 'init'">
@@ -176,7 +176,9 @@ export default {
     zimbabue: null,
 
     sp: null,
-    ms: null
+    ms: null,
+
+    mob: 0,
   }),
 
   created() {
@@ -236,6 +238,16 @@ export default {
       const aux = parseISO(date);
       const newDate = format(aux, " dd 'de' MMMM' , às ' HH:mm'h'");
       return newDate;
+    },
+    handleSize() {
+      if(this.mob == 0) {
+        document.getElementById('sideMenu').style.height = '100%'
+        this.mob = 1
+      } else {
+        document.getElementById('sideMenu').style.height = '50px'
+        this.mob = 0;
+      }
+
     }
   }
 };
