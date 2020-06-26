@@ -68,9 +68,9 @@
               <h1>País com maior número de casos (casos por milhão):</h1>
             </li>
           </ul>
-          <span>País: {{!!us ? us.country : ''}}</span>
-          <span>Casos: {{!!us ? us.confirmed : ''}}</span>
-          <span>Mortes: {{!!us ? us.deaths : ''}}</span>
+          <span>País: {{!!belgium ? belgium.country : ''}}</span>
+          <span>Casos: {{!!belgium ? belgium.confirmed : ''}}</span>
+          <span>Mortes: {{!!belgium ? belgium.deaths : ''}}</span>
         </div>
         <div class="less-cases">
           <ul class="list">
@@ -170,7 +170,7 @@ export default {
     pais: null,
     status_api: null,
 
-    us: null,
+    belgium: null,
     zimbabue: null,
 
     sp: null,
@@ -196,9 +196,9 @@ export default {
     },
     async handleUs() {
       const response = await axios.get(
-        "https://covid19-brazil-api.now.sh/api/report/v1/us"
+        "https://covid19-brazil-api.now.sh/api/report/v1/belgium"
       );
-      this.us = response.data.data;
+      this.belgium = response.data.data;
     },
     async handleZimbabue() {
       const response = await axios.get(
